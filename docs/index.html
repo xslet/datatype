@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>@xslet/datatype Index</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.spacelab.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top ">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">@xslet/datatype</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="xslet.html">xslet</a></li><li><a href="xslet.datatype.html">xslet.datatype</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="xslet.datatype.Rect.html">xslet.datatype.Rect</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-8">
+	
+		<div id="main">
+			
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+    <section class="readme-section">
+        <article><h1><a href="https://github.com/xslet/datatype/">@xslet/datatype</a> <a href="https://xslet.github.io/datatype/"><img src="http://img.shields.io/badge/HP-github.io-ffbbbb.svg" alt="Github.io"></a> <a href="https://www.npmjs.org/package/@xslet/datatype/"><img src="http://img.shields.io/badge/npm-v0.0.0-blue.svg" alt="NPM version"></a> <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-green.svg" alt="MIT License"></a> <a href="https://coveralls.io/github/xslet/datatype?branch=master"><img src="https://coveralls.io/repos/github/xslet/datatype/badge.svg?branch=master" alt="Coverage Status"></a></h1><p>Defines data types and utilities used in xslet packages.</p>
+<h2>Install</h2><h3>Install from npm</h3><p>Executes following command to install this package from npm.</p>
+<pre class="prettyprint source lang-sh"><code>$ npm install --save @xslet/datatype</code></pre><h3>Load this package in a browser</h3><pre class="prettyprint source lang-js"><code>&lt;script src=&quot;xslet.datatype.min.js&quot;>&lt;/script></code></pre><h2>Usage</h2><h3>Rect</h3><pre class="prettyprint source lang-js"><code>Rect rect = Rect({ left: 10, top: 20, width: 100, height: 50 })
+
+console.log(rect)
+// => { left: 10, top: 20, right: 90, bottom: 30, width: 100, height: 50 }
+
+console.log(rect.right)
+// => 110
+
+rect.top = 30
+rect.bottom = 200
+
+console.log(rect)
+// => { left: 10, top: 30, right: 90, bottom: 200, width: 100, height: 170 }</code></pre><h2>APIs</h2><h4><u>Rect</u></h4><p>Represents a rectangle.</p>
+<p>Each of <code>.right</code> and <code>.width</code> properties are calculated automatically with another properties and <code>.left</code>.
+As well as each of <code>.bottom</code> and <code>.height</code> properties are calculated automatically with another properties and <code>.top</code>.</p>
+<p>When <code>.left</code> and <code>.top</code> properties are changed, the rectangle is moved and <code>.width</code> and <code>.height</code> are not changed.</p>
+<p>The unit of this value is not specified.
+In xslet package, it would be determined by <code>xslet.window.unitOfSize</code>.</p>
+<p><strong>Properties:</strong></p>
+<ul>
+<li><strong>.top</strong> {number} - The top position of this rectangle.</li>
+<li><strong>.left</strong> {number} - The left position of this rectangle.</li>
+<li><strong>.right</strong> {number} - The right position of this rectangle.</li>
+<li><strong>.bottom</strong> {number} - The bottom position of this rectangle.</li>
+<li><strong>.width</strong> {number} - The width position of this rectangle.</li>
+<li><strong>.height</strong> {number} - The height position of this rectangle.</li>
+</ul>
+<p><strong>Constructor:</strong></p>
+<ul>
+<li><p><strong>Rect()</strong></p>
+<p>  Creates a Rect object of which all properties is zero.</p>
+</li>
+<li><p><strong>Rect(obj)</strong></p>
+<p>  Creates a Rect object of which properties are corner positions or size of a rectangle. </p>
+<p>  <strong>Parameters:</strong></p>
+<ul>
+<li><p><strong>obj</strong> {object}</p>
+<p>  An object which supposed to have either or all following properties: <code>.left</code>, <code>.top</code>, <code>.right</code>, <code>.bottom</code>, <code>.width</code> and <code>.height</code>.
+  If all <code>.left</code>, <code>.right</code> and <code>.width</code> properties are specified but <code>.width</code> is different from <code>.right - .left</code>, <code>.right</code> is changed to <code>.left + .width</code>. It is also same about <code>.top</code>, <code>.bottom</code> and <code>.height</code>.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2>License</h2><p>Copyright (C) 2016 Takayuki Sato</p>
+<p>This program is free software under <a href="https://opensource.org/licenses/MIT">MIT</a> License.
+See the file LICENSE in this distribution for more details.</p></article>
+    </section>
+
+
+
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+		<div class="col-md-3">
+			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
+		</div>
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
+	
+		on 2016/12/12 07:27:16
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : true,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>

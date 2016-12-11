@@ -1,0 +1,42 @@
+{
+  "name": "@xslet/datatype",
+  "version": "0.0.0",
+  "description": "Defines data types and utilities used in xslet packages.",
+  "main": "src/defineDatatypes.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xslet/datatype.git"
+  },
+  "keywords": [
+    "web",
+    "datatype"
+  ],
+  "author": "Takayuki Sato",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/xslet/datatype/issues"
+  },
+  "homepage": "https://github.com/xslet/datatype#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "coveralls": "^2.11.15",
+    "del": "^2.2.2",
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-eslint": "^3.0.1",
+    "gulp-fun-style": "^0.3.2",
+    "gulp-jsdoc3": "^1.0.1",
+    "gulp-plumber": "^1.1.0",
+    "gulp-replace": "^0.5.4",
+    "gulp-sourcemaps": "^1.9.1",
+    "gulp-spawn-mocha": "^3.1.0",
+    "gulp-uglify": "^2.0.0",
+    "istanbul": "^0.4.5",
+    "jsdom": "^9.8.3",
+    "mocha": "^3.2.0",
+    "mocha-lcov-reporter": "^1.2.0"
+  }
+}
