@@ -1,10 +1,11 @@
 {
   "name": "@xslet/datatype",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Defines data types and utilities used in xslet packages.",
   "main": "src/defineDatatypes.js",
   "scripts": {
-    "test": "gulp test"
+    "test": "gulp test",
+    "coveralls": "gulp coverage && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage"
   },
   "repository": {
     "type": "git",

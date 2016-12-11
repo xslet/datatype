@@ -25,15 +25,15 @@
 
   var str = '<ol>';
 
-  str += '<li>' +
-    '<a href="./defineDatatype.test.html">&#x1f517;defineDatatype</a>' +
-    '</li>';
-
   libs.forEach(function(lib, i) {
     str += '<li>' +
       '<a href="./lib/' + lib + '.test.html">&#x1f517;' + lib + '</a>' +
       '</li>';
   });
+
+  str += '<li>' +
+    '<a href="./defineDatatype.test.html">&#x1f517;defineDatatype</a>' +
+    '</li>';
 
   str += '</ol>';
 
