@@ -1,11 +1,11 @@
 'use strict';
 
-var defineDatatype = require('../../src/defineDatatype');
+var defineDatatypes = require('../../src/defineDatatypes');
 var chai = require('chai');
 var expect = chai.expect;
 
 var xslet = {};
-defineDatatype(xslet);
+defineDatatypes(xslet);
 
 describe('xslet.datatype', function() {
 
