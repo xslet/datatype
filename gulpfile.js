@@ -1,116 +1,111 @@
+'use strict';
+
 const gulp = require('gulp')
 const fun = require('gulp-fun-style')
 const del = require('del')
-const uglify = require('gulp-uglify')
-const concat = require('gulp-concat')
-const replace = require('gulp-replace')
-const sourcemaps = require('gulp-sourcemaps')
-const jsdoc = require('gulp-jsdoc3')
 const eslint = require('gulp-eslint')
 const plumber = require('gulp-plumber')
 const mocha = require('gulp-spawn-mocha')
+const webpack = require('webpack-stream')
+const headerfooter = require('gulp-headerfooter')
+const named = require('vinyl-named')
+const marked = require('gulp-marked');
+const mochaPhantomJS = require('gulp-mocha-phantomjs')
+const semver = require('semver')
 
-const path = require('path')
-const EOL = '\n'
+if (semver.gte(process.version, '7.6.0')) {
+  const mochaChrome = require('gulp-mocha-chrome')
+}
 
-var filesForWeb = [
-  'res/header.forweb',
-  'src/lib/Rect.js',
-  'src/defineDatatype.js',
-  'res/footer.forweb',
-]
 
-var testToolsForWeb = [
-  'node_modules/mocha/mocha.css',
-  'node_modules/mocha/mocha.js',
-  'node_modules/chai/chai.js',
-]
+fun.default = ['build']
 
-var srcfiles = filesForWeb.filter(file => path.extname(file) === '.js')
-var testfiles = ['test/node/**/*.test.js']
+fun.build = [['clean', [['lint', 'bundle', 'test', 'docs']] ]]
+fun.build.description = 'Lint, bundle, test and make docs.'
 
-var destfile = 'dist/xslet.datatype.js'
-var minifile = 'dist/xslet.datatype.min.js'
 
-fun.build = [['clean', [['webify', 'lint', 'minify', 'makedoc']] ]]
-fun.build.description = 'Makes product js files and document files.'
+fun.clean = ['clean_dist', 'clean_test', 'clean_docs']
+fun.clean.description = 'Clean all product files.'
 
-fun.clean = ['cleanDest', 'cleanTest', 'cleanDocs']
-fun.clean.description = 'Cleans all product files.'
+fun.clean_dist = done => del(['dist/**'], done)
+fun.clean_test = done => del(['coverage/**'], done)
+fun.clean_docs = done => del(['docs/res/**'], done)
 
-fun.cleanDest = done => del(['dist/**'], done)
-fun.cleanTest = done =>
-  del(['test/web/**/*.js', 'test/web/tools', 'coverage/**'], done)
-fun.cleanDocs = done => del(['docs/**'], done)
-
-fun.webify = ['webifyDest', 'webifyTest', 'copyTestTools']
-
-fun.webifyDest = () =>
-  gulp.src(filesForWeb)
-      .pipe(replace(/(^|[\r\n]+)(module\.exports *=.*[\r\n]+)+/g, EOL))
-      .pipe(replace(/(^|[\r\n]+)((|.*[; =]+)require *\(.*[\r\n]+)+/g, EOL))
-      .pipe(replace(/(^|[\r\n]+)(["']use strict["'];.*[\r\n]+)+/g, EOL))
-      .pipe(replace(/(^|[\r\n]+)\/\* *[\r\n]+ \* *Copyright.*[\r\n]+.*[\r\n]+ *\*\/ *[\r\n]+/, EOL))
-      .pipe(concat(path.basename(destfile)))
-      .pipe(gulp.dest(path.dirname(destfile)))
-
-fun.webifyTest = () =>
-  gulp.src(['src/**/*.js', 'test/node/**/*.js', '!test/node/helper/**'])
-      .pipe(replace(/(^|[\r\n]+)(module\.exports *=.*[\r\n]+)+/g, EOL))
-      .pipe(replace(/(^|[\r\n]+)((|.*[; =]+)require *\(.*[\r\n]+)+/g, EOL))
-      .pipe(replace(/(^|[\r\n]+)(["']use strict["'];.*[\r\n]+)+/g, EOL))
-      .pipe(gulp.dest('./test/web'))
-
-fun.copyTestTools = () =>
-  gulp.src(testToolsForWeb)
-      .pipe(gulp.dest('test/web/tools'))
-
-fun.minify = () =>
-  gulp.src(destfile)
-      .pipe(sourcemaps.init())
-      .pipe(concat(path.basename(minifile)))
-      .pipe(uglify({ preserveComments: 'some' }))
-      .pipe(sourcemaps.write('./'))
-      .pipe(gulp.dest(path.dirname(minifile)))
 
 fun.lint = () =>
-  gulp.src(srcfiles)
-      .pipe(plumber())
-      .pipe(eslint())
-      .pipe(eslint.format())
-fun.lint.description = 'Lint js source files.'
+  gulp.src(['src/**/*.js'])
+    .pipe(plumber())
+    .pipe(eslint())
+    .pipe(eslint.format())
+fun.lint.description = 'Lint js files.'
 
-fun.makedoc = ['jsdoc', 'copyDistToDocs', 'copyTestToDocs']
 
-fun.jsdoc = done =>
-  gulp.src([destfile, 'README.md'])
-      .pipe(plumber())
-      .pipe(jsdoc(require('./.jsdoc.json'), done))
+fun.test = [['test_coverage']]
+fun.test.description = 'Runs tests with coverage.'
 
-fun.copyDistToDocs = () =>
-  gulp.src('dist/**')
-      .pipe(gulp.dest('docs/dist'))
+fun.test_coverage = () =>
+  gulp.src(['test/**/*.test.js'])
+    .pipe(mocha({ istanbul: true }))
 
-fun.copyTestToDocs = () =>
-  gulp.src('test/web/**')
-      .pipe(gulp.dest('docs/test/web'))
 
-fun.test = () =>
-  gulp.src(testfiles)
-      .pipe(plumber())
-      .pipe(mocha())
-fun.test.description = 'Runs the unit tests.'
+fun.bundle = () =>
+  gulp.src('src/index.js')
+    .pipe(webpack(require('./.webpack.config.js')))
+    .pipe(gulp.dest('dist/'))
+fun.bundle.description = 'Bundle source files.'
 
-fun.coverage = () =>
-  gulp.src(testfiles)
-      .pipe(plumber())
-      .pipe(mocha({ istanbul: true }))
-fun.coverage.description = 'Measures the coverage of the unit tests.'
 
-fun.watch = {
-  watch: [].concat(srcfiles, testfiles),
-  call: [['build', 'test']],
+fun.watch_test = {
+  watch: ['src/**/*.js', 'test/**/*.test.js'],
+  call: [['lint', 'test']]
 }
-fun.watch.description = 'Watches file changes, then builds and tests.'
 
-fun.default = fun.watch
+fun.watch_docs = { watch: ['docs/**/*.md'], call: ['docs'] }
+
+fun.watch = ['watch_test', 'watch_docs']
+fun.watch.description = 'Watches file changes, then lint, test and docs.'
+
+
+fun.docs = ['docs_copyfiles', 'docs_maketests', 'docs_makeapi']
+fun.docs.description = 'Make documents'
+
+fun.docs_copyfiles = () =>
+  gulp.src(['dist/*',
+            'node_modules/mocha/mocha.css',
+            'node_modules/mocha/mocha.js',
+            'node_modules/chai/chai.js',
+           ])
+    .pipe(gulp.dest('docs/res/'))
+
+fun.docs_maketests = () =>
+  gulp.src(['test/*.test.js', '!test/index.test.js'])
+    .pipe(named())
+    .pipe(webpack())
+    .pipe(gulp.dest('docs/res/'))
+
+fun.docs_makeapi = () =>
+  gulp.src('docs/index.md')
+    .pipe(marked())
+    .pipe(headerfooter.header(
+      '<!DOCTYPE html>\n<html>\n<head>\n' +
+      '<meta charset="utf-8"/>\n' +
+      '<title>@xslet/datatype API document</title>\n' +
+      '<link rel="stylesheet" href="./api.css"/>\n' +
+      '<script src="./api.js"></script>\n' +
+      '</head>\n<body>\n'
+    ))
+    .pipe(headerfooter.footer('</body>\n</html>'))
+    .pipe(gulp.dest('docs/'))
+
+
+fun.test_phantomjs = () =>
+  gulp.src(['docs/lib/*.html'])
+    .pipe(mochaPhantomJS())
+fun.test_phantomjs.description = 'Runs the tests with PhantomJS.'
+
+if (semver.gte(process.version, '7.6.0')) {
+  fun.test_chrome = () =>
+    gulp.src(['docs/lib/*.html'])
+      .pipe(mochaChrome())
+  fun.test_chrome.description = 'Runs the tests with headless Chrome.'
+}

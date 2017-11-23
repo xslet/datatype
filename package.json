@@ -1,8 +1,12 @@
 {
   "name": "@xslet/datatype",
   "version": "0.1.1",
-  "description": "Defines data types and utilities used in xslet packages.",
-  "main": "src/defineDatatypes.js",
+  "description": "Defines data types used in xslet packages.",
+  "main": "src/index.js",
+  "files": [
+    "src/",
+    "dist/"
+  ],
   "scripts": {
     "test": "gulp test",
     "coveralls": "gulp coverage && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage"
@@ -13,7 +17,8 @@
   },
   "keywords": [
     "web",
-    "datatype"
+    "datatype",
+    "xslet"
   ],
   "author": "Takayuki Sato",
   "license": "MIT",
@@ -22,22 +27,26 @@
   },
   "homepage": "https://github.com/xslet/datatype#readme",
   "devDependencies": {
-    "chai": "^3.5.0",
-    "coveralls": "^2.11.15",
-    "del": "^2.2.2",
+    "chai": "^4.1.2",
+    "coveralls": "^3.0.0",
+    "del": "^3.0.0",
     "gulp": "github:gulpjs/gulp#4.0",
-    "gulp-concat": "^2.6.1",
-    "gulp-eslint": "^3.0.1",
+    "gulp-eslint": "^4.0.0",
     "gulp-fun-style": "^0.3.2",
-    "gulp-jsdoc3": "^1.0.1",
+    "gulp-headerfooter": "^1.0.3",
+    "gulp-marked": "^1.0.0",
+    "gulp-mocha-chrome": "^0.1.0",
+    "gulp-mocha-phantomjs": "^0.12.1",
     "gulp-plumber": "^1.1.0",
-    "gulp-replace": "^0.5.4",
-    "gulp-sourcemaps": "^1.9.1",
-    "gulp-spawn-mocha": "^3.1.0",
-    "gulp-uglify": "^2.0.0",
+    "gulp-spawn-mocha": "^4.0.1",
     "istanbul": "^0.4.5",
-    "jsdom": "^9.8.3",
-    "mocha": "^3.2.0",
-    "mocha-lcov-reporter": "^1.2.0"
+    "mocha": "^4.0.1",
+    "semver": "^5.4.1",
+    "vinyl-named": "^1.1.0",
+    "webpack": "^3.8.1",
+    "webpack-stream": "^4.0.0"
+  },
+  "dependencies": {
+    "@fav/type.is-finite-number": "^0.7.0"
   }
 }

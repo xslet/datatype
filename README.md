@@ -26,6 +26,8 @@ Usage
 ### Rect
 
 ```js
+var Rect = xslet.datatype.Rect;
+
 Rect rect = Rect({ left: 10, top: 20, width: 100, height: 50 })
 
 console.log(rect)
