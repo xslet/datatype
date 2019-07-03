@@ -27,26 +27,26 @@
   },
   "homepage": "https://github.com/xslet/datatype#readme",
   "devDependencies": {
-    "chai": "^4.1.2",
-    "coveralls": "^3.0.0",
-    "del": "^3.0.0",
-    "gulp": "github:gulpjs/gulp#4.0",
-    "gulp-eslint": "^4.0.0",
+    "chai": "^4.2.0",
+    "coveralls": "^3.0.4",
+    "del": "^5.0.0",
+    "gulp": "^4.0.2",
+    "gulp-eslint": "^6.0.0",
     "gulp-fun-style": "^0.3.2",
     "gulp-headerfooter": "^1.0.3",
     "gulp-marked": "^1.0.0",
     "gulp-mocha-chrome": "^0.1.0",
-    "gulp-mocha-phantomjs": "^0.12.1",
-    "gulp-plumber": "^1.1.0",
-    "gulp-spawn-mocha": "^4.0.1",
+    "gulp-mocha-phantomjs": "^0.12.2",
+    "gulp-plumber": "^1.2.1",
+    "gulp-spawn-mocha": "^5.0.1",
     "istanbul": "^0.4.5",
-    "mocha": "^4.0.1",
-    "semver": "^5.4.1",
+    "mocha": "^6.1.4",
+    "semver": "^6.2.0",
     "vinyl-named": "^1.1.0",
-    "webpack": "^3.8.1",
-    "webpack-stream": "^4.0.0"
+    "webpack": "^4.35.2",
+    "webpack-stream": "^5.2.1"
   },
   "dependencies": {
-    "@fav/type.is-finite-number": "^0.7.0"
+    "@fav/type.is-finite-number": "^1.0.2"
   }
 }
