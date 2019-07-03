@@ -9,14 +9,8 @@ const mocha = require('gulp-spawn-mocha')
 const webpack = require('webpack-stream')
 const headerfooter = require('gulp-headerfooter')
 const named = require('vinyl-named')
-const marked = require('gulp-marked');
-const mochaPhantomJS = require('gulp-mocha-phantomjs')
+const markdown = require('gulp-markdown');
 const semver = require('semver')
-
-if (semver.gte(process.version, '7.6.0')) {
-  const mochaChrome = require('gulp-mocha-chrome')
-}
-
 
 fun.default = ['build']
 
@@ -85,7 +79,7 @@ fun.docs_maketests = () =>
 
 fun.docs_makeapi = () =>
   gulp.src('docs/index.md')
-    .pipe(marked())
+    .pipe(markdown())
     .pipe(headerfooter.header(
       '<!DOCTYPE html>\n<html>\n<head>\n' +
       '<meta charset="utf-8"/>\n' +
@@ -97,15 +91,3 @@ fun.docs_makeapi = () =>
     .pipe(headerfooter.footer('</body>\n</html>'))
     .pipe(gulp.dest('docs/'))
 
-
-fun.test_phantomjs = () =>
-  gulp.src(['docs/lib/*.html'])
-    .pipe(mochaPhantomJS())
-fun.test_phantomjs.description = 'Runs the tests with PhantomJS.'
-
-if (semver.gte(process.version, '7.6.0')) {
-  fun.test_chrome = () =>
-    gulp.src(['docs/lib/*.html'])
-      .pipe(mochaChrome())
-  fun.test_chrome.description = 'Runs the tests with headless Chrome.'
-}
