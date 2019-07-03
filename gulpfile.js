@@ -74,7 +74,7 @@ fun.docs_copyfiles = () =>
 fun.docs_maketests = () =>
   gulp.src(['test/*.test.js', '!test/index.test.js'])
     .pipe(named())
-    .pipe(webpack())
+    .pipe(webpack(require('./.webpack.config.js')))
     .pipe(gulp.dest('docs/res/'))
 
 fun.docs_makeapi = () =>

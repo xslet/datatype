@@ -3,6 +3,9 @@ sudo: false
 language: node_js
 
 node_js:
+  - '12'
+  - '11'
+  - '10'
   - '9'
   - '8'
   - '7'
@@ -14,3 +17,5 @@ after_success: 'npm run coveralls'
 
 os:
   - linux
+  - osx
+  - windows
