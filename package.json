@@ -1,12 +1,15 @@
 {
   "name": "@xslet/datatype",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Defines data types used in xslet packages.",
   "main": "src/index.js",
   "files": [
     "src/",
     "dist/"
   ],
+  "engines": {
+    "node": ">= 8.0.0"
+  },
   "scripts": {
     "test": "gulp test",
     "coveralls": "gulp coverage && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage"
