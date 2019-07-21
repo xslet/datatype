@@ -7,5 +7,41 @@
 <script src="./api.js"></script>
 </head>
 <body>
+<h1 id="xsletdatatype-v01---api-document"><a href="https://github.com/xslet/datatype/">@xslet/datatype</a> v0.1 - API document</h1>
+<hr>
+<h2 id="apis">APIs</h2>
+<h3 id="urectu"><u>Rect</u></h3>
+<p>Represents a rectangle.</p>
+<p>Each of <code>.right</code> and <code>.width</code> properties are calculated automatically with another properties and <code>.left</code>.
+As well as each of <code>.bottom</code> and <code>.height</code> properties are calculated automatically with another properties and <code>.top</code>.</p>
+<p>When <code>.left</code> and <code>.top</code> properties are changed, the rectangle is moved and <code>.width</code> and <code>.height</code> are not changed.</p>
+<p>The unit of this value is not specified.
+In xslet package, it would be determined by <code>xslet.window.unitOfSize</code>.</p>
+<p><strong>Properties:</strong></p>
+<ul>
+<li><strong>.top</strong> {number} - The top position of this rectangle.</li>
+<li><strong>.left</strong> {number} - The left position of this rectangle.</li>
+<li><strong>.right</strong> {number} - The right position of this rectangle.</li>
+<li><strong>.bottom</strong> {number} - The bottom position of this rectangle.</li>
+<li><strong>.width</strong> {number} - The width position of this rectangle.</li>
+<li><strong>.height</strong> {number} - The height position of this rectangle.</li>
+</ul>
+<p><strong>Constructor:</strong></p>
+<ul>
+<li><p><strong>Rect()</strong></p>
+<p>  Creates a Rect object of which all properties is zero.</p>
+</li>
+<li><p><strong>Rect(obj)</strong></p>
+<p>  Creates a Rect object of which properties are corner positions or size of a rectangle. </p>
+<p>  <strong>Parameters:</strong></p>
+<ul>
+<li><p><strong>obj</strong> {object}</p>
+<p>  An object which supposed to have either or all following properties: <code>.left</code>, <code>.top</code>, <code>.right</code>, <code>.bottom</code>, <code>.width</code> and <code>.height</code>.
+  If all <code>.left</code>, <code>.right</code> and <code>.width</code> properties are specified but <code>.width</code> is different from <code>.right - .left</code>, <code>.right</code> is changed to <code>.left + .width</code>. It is also same about <code>.top</code>, <code>.bottom</code> and <code>.height</code>.</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
 </body>
 </html>
