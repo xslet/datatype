@@ -1,4 +1,4 @@
-# [@xslet/datatype][repo-url] v0.1 - API document
+# [@xslet/datatype][repo-url] v0.2 - API document
 
 ----
 

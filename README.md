@@ -87,7 +87,7 @@ In xslet package, it would be determined by `xslet.window.unitOfSize`.
 Behavior checks on browsers
 ---------------------------
 
-Show this page: [test/web/index.html](test/web/index.html).
+Show this page: [https://xslet.github.io/datatype/test.html](https://xslet.github.io/datatype/test.html).
 
 License
 -------
