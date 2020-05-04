@@ -100,7 +100,7 @@ See the file LICENSE in this distribution for more details.
 [repo-url]: https://github.com/xslet/datatype/
 [io-image]: http://img.shields.io/badge/HP-github.io-ffbbbb.svg
 [io-url]: https://xslet.github.io/datatype/
-[npm-image]: http://img.shields.io/badge/npm-v0.2.1-blue.svg
+[npm-image]: http://img.shields.io/badge/npm-v0.2.2-blue.svg
 [npm-url]: https://www.npmjs.org/package/@xslet/datatype/
 [mit-image]: https://img.shields.io/badge/license-MIT-green.svg
 [mit-url]: https://opensource.org/licenses/MIT

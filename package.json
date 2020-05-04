@@ -1,6 +1,6 @@
 {
   "name": "@xslet/datatype",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Defines data types used in xslet packages.",
   "main": "src/index.js",
   "files": [
