@@ -5,7 +5,7 @@ const fun = require('gulp-fun-style')
 const del = require('del')
 const eslint = require('gulp-eslint')
 const plumber = require('gulp-plumber')
-const mocha = require('gulp-spawn-mocha')
+const mocha = require('gulp-mocha')
 const webpack = require('webpack-stream')
 const headerfooter = require('gulp-headerfooter')
 const named = require('vinyl-named')
@@ -34,13 +34,12 @@ fun.lint = () =>
 fun.lint.description = 'Lint js files.'
 
 
-fun.test = [['test_coverage']]
+fun.test = [['test_with_mocha']]
 fun.test.description = 'Runs tests with coverage.'
 
-fun.test_coverage = () =>
+fun.test_with_mocha = () =>
   gulp.src(['test/**/*.test.js'])
-    .pipe(mocha({ istanbul: true }))
-
+    .pipe(mocha())
 
 fun.bundle = () =>
   gulp.src('src/index.js')
