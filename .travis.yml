@@ -3,11 +3,13 @@ sudo: false
 language: node_js
 
 node_js:
+  - '16'
+  - '15'
+  - '14'
+  - '13'
   - '12'
   - '11'
   - '10'
-  - '9'
-  - '8'
 
 after_success: 'npm run coveralls'
 
